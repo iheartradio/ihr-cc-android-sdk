@@ -121,10 +121,7 @@ public class CrowdControl {
     private static final String KEY_ID = "uid";
     private static final String KEY_ENV_ID = "e";
     private static final String KEY_DEVICE_TYPE = "ua";
-    private static final String KEY_SDK_VERSION = "sdk";
-    private static final String KEY_PANORAMA_ID =  "rid";
 
-    private static final String SDK_VERSION = "2.0";
     private static final String VALUE_YES = "y";
     private static final String VALUE_APP = "app";
     private static final String BCP_SUBDOMAIN = "bcp.";
@@ -331,7 +328,6 @@ public class CrowdControl {
                     appendParameter(new AtomParameter(KEY_CLIENT_ID, String.valueOf(getClientId())));
                     appendParameter(new AtomParameter(KEY_ID, getId(), AtomParameter.Type.ID));
                     appendParameter(new AtomParameter(KEY_DEVICE_TYPE, getIdType().toString()));
-                    appendParameter(new AtomParameter(KEY_SDK_VERSION, SDK_VERSION));
                     appendParameter(new AtomParameter(KEY_ENV_ID, VALUE_APP));
 
                     if (CrowdControl.debug) Log.d(CrowdControl.LOG_TAG, "using id of " + getId() +
