@@ -7,8 +7,8 @@ android {
     minSdkVersion androidMinSdkVersion
     targetSdkVersion androidTargetSdkVersion
 
+    multiDexEnabled true
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    consumerProguardFiles 'consumer-rules.pro'
   }
 
   compileOptions {
@@ -24,9 +24,19 @@ android {
   }
 
   namespace 'com.clearchannel.iheartradio.crowdcontrol'
+
+  if (runningOnCI) {
+    testOptions {
+      unitTests.all {
+        reports.junitXml.destination = file("$rootProject.projectDir/Build/xml/$project.name")
+      }
+    }
+  }
 }
 
 dependencies {
+  implementation project(':commons')
+
   implementation 'com.google.android.gms:play-services-ads-lite:22.2.0'
 }
 
