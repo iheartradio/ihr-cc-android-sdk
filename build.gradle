@@ -25,14 +25,6 @@ android {
   }
 
   namespace 'com.iheartradio.android.modules.crowdcontrol'
-
-  if (runningOnCI) {
-    testOptions {
-      unitTests.all {
-        reports.junitXml.destination = file("$rootProject.projectDir/Build/xml/$project.name")
-      }
-    }
-  }
 }
 
 dependencies {
