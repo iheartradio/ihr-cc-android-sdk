@@ -9,6 +9,7 @@ android {
 
     multiDexEnabled true
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    consumerProguardFiles 'consumer-rules.pro'
   }
 
   compileOptions {
@@ -23,7 +24,7 @@ android {
     }
   }
 
-  namespace 'com.clearchannel.iheartradio.crowdcontrol'
+  namespace 'com.iheartradio.android.modules.crowdcontrol'
 
   if (runningOnCI) {
     testOptions {
@@ -35,8 +36,6 @@ android {
 }
 
 dependencies {
-  implementation project(':commons')
-
   implementation 'com.google.android.gms:play-services-ads-lite:22.2.0'
 }
 

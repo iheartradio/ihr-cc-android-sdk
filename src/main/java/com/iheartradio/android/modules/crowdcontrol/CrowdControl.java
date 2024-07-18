@@ -1,4 +1,4 @@
-package com.lotame.android;
+package com.iheartradio.android.modules.crowdcontrol;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -372,6 +372,7 @@ public class CrowdControl {
      * @return Object null
      * @deprecated HttpParams is deprecated and should not be used. Use @setRequestProperty instead
      */
+    @Deprecated
     public Object getHttpParams() {
         return null;
     }

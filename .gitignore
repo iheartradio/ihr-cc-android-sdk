@@ -4,7 +4,7 @@
 .bat
 gradle*
 */crowdcontrol/gradlew
-*/crowdcontrol/.idea*
+*/crowdcontrol/.idea**
 */crowdcontrol/gradle-wrapper.jar
 
 # Excluding xml, as there are no res files and we will want to define our manifests and IDE/Project configs

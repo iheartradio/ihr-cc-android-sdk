@@ -1,4 +1,10 @@
-package com.lotame.android;
+package com.iheartradio.android.modules.crowdcontrol;
+
+import android.content.Context;
+import android.provider.Settings.Secure;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * The MIT License (MIT)
@@ -23,59 +29,33 @@ package com.lotame.android;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- *
- * Wrapper for key/value pair (and any other properties of such that we want to carry around)
+ * *******************************************************************************
  */
-public class AtomParameter
-{
-	enum Type {PLACEMENT_OPPS, DEFAULT, ID}
-	private String key;
-	private String value;
-	private Type type;
+public class Utils {
+    public static String getUuid(Context context) {
+        String udid =  Secure.getString(context.getContentResolver(), Secure.ANDROID_ID);
+        return sha1(udid);
+    }
 
-	public AtomParameter(String key, String value)
-	{
-		super();
-		this.key = key;
-		this.value = value;
-		this.setType(Type.DEFAULT);
-	}
+    public static String sha1(String source) {
+        if (source == null) {
+            return null;
+        }
 
-	public AtomParameter(String key, String value, Type atomType)
-	{
-		super();
-		this.key = key;
-		this.value = value;
-		this.setType(atomType);
-	}
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-1");
 
-	public String getKey()
-	{
-		return key;
-	}
+        } catch (NoSuchAlgorithmException e) {
+            return null;
+        }
 
-	public void setKey(String key)
-	{
-		this.key = key;
-	}
-
-	public String getValue()
-	{
-		return value;
-	}
-
-	public void setValue(String value)
-	{
-		this.value = value;
-	}
-
-	public Type getType()
-	{
-		return type;
-	}
-
-	public void setType(Type type)
-	{
-		this.type = type;
-	}
+        md.update(source.getBytes());
+        StringBuilder builder = new StringBuilder();
+        byte[] bytes = md.digest();
+        for (int i = 0; i < bytes.length; i++) {
+            builder.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        return builder.toString();
+    }
 }
